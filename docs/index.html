@@ -10,284 +10,62 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
         :root {
-            --ironborn: #4A90D9;
-            --wildborne: #5BA55B;
-            --crownguard: #D4A843;
-            --ashwalkers: #C75050;
-            --horde: #E08040;
-            --bg-deep: #0B0E14;
-            --bg-card: #131820;
-            --bg-subtle: #1A2030;
-            --text-primary: #E8E4DD;
-            --text-muted: #8090A0;
-            --border: #2A3040;
+            --ironborn: #4A90D9; --wildborne: #5BA55B; --crownguard: #D4A843;
+            --ashwalkers: #C75050; --horde: #E08040; --bg-deep: #0B0E14;
+            --bg-card: #131820; --bg-subtle: #1A2030; --text-primary: #E8E4DD;
+            --text-muted: #8090A0; --border: #2A3040;
         }
-
         html { scroll-behavior: smooth; }
-
-        body {
-            font-family: 'Outfit', sans-serif;
-            background: var(--bg-deep);
-            color: var(--text-primary);
-            line-height: 1.7;
-            overflow-x: hidden;
-        }
-
-        /* --- HERO --- */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 2rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background:
-                radial-gradient(ellipse 600px 400px at 30% 40%, rgba(74,144,217,0.08) 0%, transparent 70%),
-                radial-gradient(ellipse 500px 350px at 70% 60%, rgba(212,168,67,0.06) 0%, transparent 70%),
-                radial-gradient(ellipse 400px 300px at 50% 80%, rgba(199,80,80,0.05) 0%, transparent 70%);
-            pointer-events: none;
-        }
-
-        /* hex grid background pattern */
-        .hex-grid-bg {
-            position: absolute;
-            inset: 0;
-            opacity: 0.04;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Cpath d='M28 66L0 50V16L28 0l28 16v34L28 66zm0 34L0 84V50l28-16 28 16v34l-28 16z' fill='none' stroke='%23E8E4DD' stroke-width='0.5'/%3E%3C/svg%3E");
-            pointer-events: none;
-        }
-
+        body { font-family: 'Outfit', sans-serif; background: var(--bg-deep); color: var(--text-primary); line-height: 1.7; overflow-x: hidden; }
+        .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 2rem; position: relative; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 600px 400px at 30% 40%, rgba(74,144,217,0.08) 0%, transparent 70%), radial-gradient(ellipse 500px 350px at 70% 60%, rgba(212,168,67,0.06) 0%, transparent 70%), radial-gradient(ellipse 400px 300px at 50% 80%, rgba(199,80,80,0.05) 0%, transparent 70%); pointer-events: none; }
+        .hex-grid-bg { position: absolute; inset: 0; opacity: 0.04; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Cpath d='M28 66L0 50V16L28 0l28 16v34L28 66zm0 34L0 84V50l28-16 28 16v34l-28 16z' fill='none' stroke='%23E8E4DD' stroke-width='0.5'/%3E%3C/svg%3E"); pointer-events: none; }
         .hero-content { position: relative; z-index: 1; }
-
-        .logo-text {
-            font-family: 'Cinzel', serif;
-            font-weight: 900;
-            font-size: clamp(4rem, 12vw, 8rem);
-            letter-spacing: 0.15em;
-            background: linear-gradient(135deg, var(--crownguard) 0%, var(--text-primary) 50%, var(--ironborn) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 0.5rem;
-        }
-
-        .tagline {
-            font-size: clamp(1rem, 2.5vw, 1.35rem);
-            font-weight: 300;
-            color: var(--text-muted);
-            letter-spacing: 0.25em;
-            text-transform: uppercase;
-            margin-bottom: 3rem;
-        }
-
-        .faction-bar {
-            display: flex;
-            gap: 2px;
-            border-radius: 4px;
-            overflow: hidden;
-            width: 200px;
-            height: 4px;
-            margin: 0 auto 3rem;
-        }
+        .logo-text { font-family: 'Cinzel', serif; font-weight: 900; font-size: clamp(4rem, 12vw, 8rem); letter-spacing: 0.15em; background: linear-gradient(135deg, var(--crownguard) 0%, var(--text-primary) 50%, var(--ironborn) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.5rem; }
+        .tagline { font-size: clamp(1rem, 2.5vw, 1.35rem); font-weight: 300; color: var(--text-muted); letter-spacing: 0.25em; text-transform: uppercase; margin-bottom: 3rem; }
+        .faction-bar { display: flex; gap: 2px; border-radius: 4px; overflow: hidden; width: 200px; height: 4px; margin: 0 auto 3rem; }
         .faction-bar span { flex: 1; }
         .faction-bar .ib { background: var(--ironborn); }
         .faction-bar .wb { background: var(--wildborne); }
         .faction-bar .cg { background: var(--crownguard); }
         .faction-bar .aw { background: var(--ashwalkers); }
-
-        .scroll-hint {
-            position: absolute;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            color: var(--text-muted);
-            font-size: 0.8rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            animation: pulse 2s ease-in-out infinite;
-        }
-        .scroll-hint::after {
-            content: '↓';
-            display: block;
-            text-align: center;
-            margin-top: 0.25rem;
-            font-size: 1.2rem;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 0.4; }
-            50% { opacity: 1; }
-        }
-
-        /* --- SECTIONS --- */
-        .section {
-            max-width: 720px;
-            margin: 0 auto;
-            padding: 5rem 2rem;
-        }
-
-        .section h2 {
-            font-family: 'Cinzel', serif;
-            font-weight: 700;
-            font-size: 1.6rem;
-            letter-spacing: 0.08em;
-            margin-bottom: 2rem;
-            color: var(--text-primary);
-        }
-
-        .section h2::after {
-            content: '';
-            display: block;
-            width: 40px;
-            height: 2px;
-            background: var(--crownguard);
-            margin-top: 0.75rem;
-        }
-
-        .section p, .section li {
-            color: var(--text-muted);
-            font-weight: 300;
-            font-size: 1.05rem;
-            margin-bottom: 1.25rem;
-        }
-
-        .section a {
-            color: var(--crownguard);
-            text-decoration: none;
-            border-bottom: 1px solid transparent;
-            transition: border-color 0.2s;
-        }
+        .scroll-hint { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); color: var(--text-muted); font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; animation: pulse 2s ease-in-out infinite; }
+        .scroll-hint::after { content: '\2193'; display: block; text-align: center; margin-top: 0.25rem; font-size: 1.2rem; }
+        @keyframes pulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
+        .section { max-width: 720px; margin: 0 auto; padding: 5rem 2rem; }
+        .section h2 { font-family: 'Cinzel', serif; font-weight: 700; font-size: 1.6rem; letter-spacing: 0.08em; margin-bottom: 2rem; color: var(--text-primary); }
+        .section h2::after { content: ''; display: block; width: 40px; height: 2px; background: var(--crownguard); margin-top: 0.75rem; }
+        .section p, .section li { color: var(--text-muted); font-weight: 300; font-size: 1.05rem; margin-bottom: 1.25rem; }
+        .section a { color: var(--crownguard); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.2s; }
         .section a:hover { border-bottom-color: var(--crownguard); }
-
-        .divider {
-            max-width: 720px;
-            margin: 0 auto;
-            border: none;
-            border-top: 1px solid var(--border);
-        }
-
-        /* --- FEATURES --- */
-        .features {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-            margin-top: 1rem;
-        }
-
-        .feature-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 1.5rem;
-            transition: border-color 0.3s, transform 0.3s;
-        }
-        .feature-card:hover {
-            border-color: var(--text-muted);
-            transform: translateY(-2px);
-        }
-
-        .feature-card h3 {
-            font-family: 'Cinzel', serif;
-            font-size: 0.95rem;
-            font-weight: 500;
-            letter-spacing: 0.05em;
-            margin-bottom: 0.5rem;
-            color: var(--text-primary);
-        }
-        .feature-card p {
-            font-size: 0.9rem;
-            margin-bottom: 0;
-            line-height: 1.6;
-        }
-
-        /* --- FACTIONS --- */
-        .factions {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-        .faction {
-            padding: 1.25rem;
-            border-radius: 8px;
-            border: 1px solid var(--border);
-            background: var(--bg-card);
-        }
-        .faction-name {
-            font-family: 'Cinzel', serif;
-            font-weight: 700;
-            font-size: 1rem;
-            margin-bottom: 0.25rem;
-        }
-        .faction-bonus {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            font-weight: 300;
-            margin-bottom: 0;
-        }
+        .divider { max-width: 720px; margin: 0 auto; border: none; border-top: 1px solid var(--border); }
+        .features { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem; }
+        .feature-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem; transition: border-color 0.3s, transform 0.3s; }
+        .feature-card:hover { border-color: var(--text-muted); transform: translateY(-2px); }
+        .feature-card h3 { font-family: 'Cinzel', serif; font-size: 0.95rem; font-weight: 500; letter-spacing: 0.05em; margin-bottom: 0.5rem; color: var(--text-primary); }
+        .feature-card p { font-size: 0.9rem; margin-bottom: 0; line-height: 1.6; }
+        .factions { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; }
+        .faction { padding: 1.25rem; border-radius: 8px; border: 1px solid var(--border); background: var(--bg-card); }
+        .faction-name { font-family: 'Cinzel', serif; font-weight: 700; font-size: 1rem; margin-bottom: 0.25rem; }
+        .faction-bonus { font-size: 0.85rem; color: var(--text-muted); font-weight: 300; margin-bottom: 0; }
         .faction.ib .faction-name { color: var(--ironborn); }
         .faction.wb .faction-name { color: var(--wildborne); }
         .faction.cg .faction-name { color: var(--crownguard); }
         .faction.aw .faction-name { color: var(--ashwalkers); }
-
-        /* --- SUPPORT --- */
-        .support-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 2rem;
-            text-align: center;
-            margin-top: 1rem;
-        }
-
-        .support-card .email {
-            font-family: 'Outfit', sans-serif;
-            font-size: 1.2rem;
-            font-weight: 500;
-            color: var(--crownguard);
-            text-decoration: none;
-            letter-spacing: 0.02em;
-        }
-        .support-card .email:hover { text-decoration: underline; }
-
-        .support-card p {
-            font-size: 0.9rem;
-            margin-top: 1rem;
-            margin-bottom: 0;
-        }
-
-        /* --- FOOTER --- */
-        footer {
-            text-align: center;
-            padding: 3rem 2rem;
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            font-weight: 300;
-        }
+        .support-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 2rem; text-align: center; margin-top: 1rem; }
+        .support-card .contact-link { font-family: 'Outfit', sans-serif; font-size: 1.2rem; font-weight: 500; color: var(--crownguard); text-decoration: none; letter-spacing: 0.02em; }
+        .support-card .contact-link:hover { text-decoration: underline; }
+        .support-card p { font-size: 0.9rem; margin-top: 1rem; margin-bottom: 0; }
+        footer { text-align: center; padding: 3rem 2rem; color: var(--text-muted); font-size: 0.85rem; font-weight: 300; }
         footer a { color: var(--text-muted); text-decoration: none; }
         footer a:hover { color: var(--text-primary); }
         footer .links { margin-bottom: 0.75rem; }
         footer .links a { margin: 0 1rem; }
-
-        @media (max-width: 600px) {
-            .features, .factions { grid-template-columns: 1fr; }
-            .section { padding: 3rem 1.5rem; }
-        }
+        @media (max-width: 600px) { .features, .factions { grid-template-columns: 1fr; } .section { padding: 3rem 1.5rem; } }
     </style>
 </head>
 <body>
-
     <div class="hero">
         <div class="hex-grid-bg"></div>
         <div class="hero-content">
@@ -302,75 +80,50 @@
         </div>
         <div class="scroll-hint">Explore</div>
     </div>
-
     <div class="section">
         <h2>The Game</h2>
         <p>DWEL is a location-based civilization game that turns the real world into a battleground for territory. Claim hexagonal cells by physically dwelling at locations, build structures, train armies, and defend your domain against other players and roaming barbarian hordes.</p>
         <p>Every hex on the map is real ground. Every cell you hold is a place you've stood. Your empire is built with your footsteps.</p>
     </div>
-
     <hr class="divider">
-
     <div class="section">
         <h2>How It Works</h2>
         <div class="features">
-            <div class="feature-card">
-                <h3>Dwell to Claim</h3>
-                <p>Spend time at a location to spawn units. The longer you stay, the stronger the unit you earn.</p>
-            </div>
-            <div class="feature-card">
-                <h3>Build & Fortify</h3>
-                <p>Construct forts, barracks, watchtowers, armories, and monuments on your territory. Each building grants unique strategic bonuses.</p>
-            </div>
-            <div class="feature-card">
-                <h3>Command Armies</h3>
-                <p>Carry a mobile army with you. Transfer units between garrisons. Deploy strategically to attack or defend.</p>
-            </div>
-            <div class="feature-card">
-                <h3>Fight for Territory</h3>
-                <p>Attack enemy cells and NPC barbarian camps. Combat resolves asynchronously with battle replays.</p>
-            </div>
+            <div class="feature-card"><h3>Dwell to Claim</h3><p>Spend time at a location to spawn units. The longer you stay, the stronger the unit you earn.</p></div>
+            <div class="feature-card"><h3>Build &amp; Fortify</h3><p>Construct forts, barracks, watchtowers, armories, and monuments on your territory. Each building grants unique strategic bonuses.</p></div>
+            <div class="feature-card"><h3>Command Armies</h3><p>Carry a mobile army with you. Transfer units between garrisons. Deploy strategically to attack or defend.</p></div>
+            <div class="feature-card"><h3>Fight for Territory</h3><p>Attack enemy cells and NPC barbarian camps. Combat resolves asynchronously with battle replays.</p></div>
         </div>
     </div>
-
     <hr class="divider">
-
     <div class="section">
         <h2>Choose Your Faction</h2>
         <div class="factions">
-            <div class="faction ib">
-                <div class="faction-name">Ironborn</div>
-                <p class="faction-bonus">Faster building construction</p>
-            </div>
-            <div class="faction wb">
-                <div class="faction-name">Wildborne</div>
-                <p class="faction-bonus">Reduced dwell time thresholds</p>
-            </div>
-            <div class="faction cg">
-                <div class="faction-name">Crownguard</div>
-                <p class="faction-bonus">Stronger garrison defense</p>
-            </div>
-            <div class="faction aw">
-                <div class="faction-name">Ashwalkers</div>
-                <p class="faction-bonus">Increased attack power</p>
-            </div>
+            <div class="faction ib"><div class="faction-name">Ironborn</div><p class="faction-bonus">Faster building construction</p></div>
+            <div class="faction wb"><div class="faction-name">Wildborne</div><p class="faction-bonus">Reduced dwell time thresholds</p></div>
+            <div class="faction cg"><div class="faction-name">Crownguard</div><p class="faction-bonus">Stronger garrison defense</p></div>
+            <div class="faction aw"><div class="faction-name">Ashwalkers</div><p class="faction-bonus">Increased attack power</p></div>
         </div>
     </div>
-
     <hr class="divider">
-
     <div class="section" id="support">
         <h2>Support</h2>
         <p>Having trouble with DWEL? Found a bug? Have a suggestion? We'd love to hear from you.</p>
         <div class="support-card">
-            <a href="/cdn-cgi/l/email-protection#1b686e6b6b74696f5b7f6c7e777c7a767e35787476" class="email"><span class="__cf_email__" data-cfemail="c4b7b1b4b4abb6b084a0b3a1a8a3a5a9a1eaa7aba9">[email&#160;protected]</span></a>
+            <a id="contact-link" class="contact-link" href="#">Loading...</a>
             <p>We typically respond within 48 hours.</p>
         </div>
     </div>
-
     <hr class="divider">
-
     <footer>
         <div class="links">
             <a href="#support">Support</a>
-            <a href="privacy
+            <a href="privacy.html">Privacy Policy</a>
+        </div>
+        <div>&copy; 2026 Pixxaid Inc. All rights reserved.</div>
+    </footer>
+    <script>
+        (function(){var u='abe';var d='flixxaid.com';var e=u+String.fromCharCode(64)+d;var a=document.getElementById('contact-link');a.href='mail'+'to:'+e;a.textContent=e;})();
+    </script>
+</body>
+</html>
